@@ -41,7 +41,7 @@ The purpose is to identify and authenticate a person using a set of recognizable
 
 ## Working Flow of Face Recognition
 
-![Flow diagram](project_images/flow-diagram.png)
+![Flow diagram](flow-diagram.png)
 
 
 ## How to run the project
