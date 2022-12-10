@@ -4,6 +4,7 @@ import numpy as np
 from PIL import Image
 
 def getImagesWithID(path):
+    '''This function is used to get images and their corresponding IDs, which are used for training, from the dataset folder'''
     imagePaths=[os.path.join(path,f) for f in os.listdir(path)]
     faces=[]
     IDs=[]
@@ -18,6 +19,7 @@ def getImagesWithID(path):
     return np.array(IDs), faces
 
 def fun_trainer():
+    '''This function is used to train the dataset, which is used for face recognition, and save the trained data in a file'''
     recognizer=cv2.face.LBPHFaceRecognizer_create();
     path='dataset'
     Ids,faces=getImagesWithID(path)

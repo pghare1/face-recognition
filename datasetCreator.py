@@ -6,6 +6,7 @@ import urllib.request
 import var_config
 
 def insertOrUpdate(id,name):
+    '''This function is used to insert or update the data in the database, which is used for face recognition'''
     conn = sqlite3.connect("facebase.db")
     cmd="SELECT * FROM people WHERE ID="+id
     cursor=conn.execute(cmd)
@@ -21,7 +22,9 @@ def insertOrUpdate(id,name):
     conn.close()
 
 def fun_datasetcreator():
+    '''This function is used to create the dataset, which is used for face recognition, and save the data in the database'''
     faceDetect=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    # Waits for the user to enter the user id and name
     while True:
         try:
             id=input('enter user id: ')
@@ -34,12 +37,18 @@ def fun_datasetcreator():
             print("\nctrl+c")
         except Exception as e:
             print("Exception Found: ",e)
-
+    # Calls the insertOrUpdate function to insert or update the data in the database
     insertOrUpdate(id,name)
     sampleNumber=0
     if var_config.which_cam==0:
         cam=cv2.VideoCapture(1)
 
+    # Creates the sampleNumber number of images for the user
+    # The images are stored in the format User.id.sampleNumber.jpg
+    # The images are stored in the gray scale
+    # The images are stored in the size of 255x255
+    # The images are stored in the format of jpg
+    # The images are stored in the dataset folder
     while(True):
         try:
             if var_config.which_cam==0:
